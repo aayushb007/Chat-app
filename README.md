@@ -1,13 +1,26 @@
-# Chat App - Angular, NodeJS, Socket.io
+# Chat App
 
-This project was built with ❤️ using Angular, NodeJS, Socket.io and generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.2.
+This is a real-time chat application built with Angular, Node.js, and Socket.io. It allows users to communicate in real-time over the internet.
 
-![Chat app with no messages](https://github.com/muhammadawaisshaikh/angular-node-chat/assets/24633059/541ed99c-5414-4045-bead-a6aeef6069b8)
-![chat app with messages and scroll](https://github.com/muhammadawaisshaikh/angular-node-chat/assets/24633059/4dc91e96-5fdf-4cae-a00a-3b1b83b17117)
+## Features
+
+- Real-time messaging: Users can send and receive messages instantly without needing to refresh the page.
+- Responsive design: The application is responsive and works well on desktop and mobile devices.
+
+## Technologies Used
+
+- Angular: Frontend framework for building the user interface.
+- Node.js: Backend runtime environment for running JavaScript server-side.
+- Socket.io: JavaScript library for real-time web applications, enabling bidirectional communication between web clients and servers.
+- Express.js: Web application framework for Node.js used for building the server-side logic.
+
+
 
 ## Development server
+Run `npm start` for a dev server. 
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Run `ng serve`
+Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
 ## Code scaffolding
 
