@@ -1,0 +1,24 @@
+<div class="pt-3">
+    <div class="list-messages">
+        <ul class="list-group list-group-flush"  *ngIf="messageList.length > 0">
+            <li class="list-group-item" *ngFor="let message of messageList"  [ngClass]="{'received-message': message.received}">
+                <p class="mb-2">
+                    <strong>{{message.sender || 'Anonymous User'}}</strong> - 
+                    <span class="text-black-50">{{message.date || dateNow | date: 'medium'}}</span>
+                </p>
+             
+                <p>{{message.message}}</p>
+            </li>
+        </ul>
+    
+        <div class="no-msg" *ngIf="messageList.length == 0">
+          <h3 class="text-center mt-lg-5">No Messages</h3>
+        </div>
+    </div>
+
+    <form class="chatbox" (ngSubmit)="sendMessage()">
+        <input class="form-control input" type="text" autocomplete="off" required [(ngModel)]="message.message" name="msg" placeholder="Type your message here ..." />
+        <button type="submit" class="btn btn-primary ms-3">Send</button>
+    </form>
+   
+</div>

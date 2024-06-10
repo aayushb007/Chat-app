@@ -1,0 +1,22 @@
+.chatbox {
+    display: flex;
+    justify-content: space-between;
+    position: fixed;
+    width: 80%;
+    bottom: 50px;
+}
+
+.list-messages {
+    height: 75vh;
+    overflow-y: auto;
+}
+
+.no-msg img {
+    width: 50%;
+    display: block;
+    margin: auto;
+}
+
+.received-message {
+    background-color: #f1f1f1; /* Gray background for received messages */
+  }
