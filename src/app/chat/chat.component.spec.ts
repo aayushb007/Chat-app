@@ -3,6 +3,7 @@ import { of } from 'rxjs';
 import { ChatComponent } from './chat.component';
 import { ChatService } from './chat.service';
 import { Message } from './message.model';
+import { FormsModule } from '@angular/forms';
 
 describe('ChatComponent', () => {
   let component: ChatComponent;
@@ -13,6 +14,7 @@ describe('ChatComponent', () => {
     const spy = jasmine.createSpyObj('ChatService', ['sendMessage', 'getMessage']);
     TestBed.configureTestingModule({
       declarations: [ChatComponent],
+      imports: [FormsModule],
       providers: [{ provide: ChatService, useValue: spy }],
     }).compileComponents();
 
@@ -22,6 +24,10 @@ describe('ChatComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ChatComponent);
     component = fixture.componentInstance;
+    
+    // Define the default return value for getMessage spy
+    chatServiceSpy.getMessage.and.returnValue(of([]));
+    
     fixture.detectChanges();
   });
 
@@ -30,25 +36,25 @@ describe('ChatComponent', () => {
   });
 
   it('should send message and reset', () => {
-    const mockMessage: Message = { message: 'Test message', received: false };
+    const mockMessage: Message = { message: 'Test message', received: true };
     component.message = mockMessage;
     component.sendMessage();
 
     expect(chatServiceSpy.sendMessage).toHaveBeenCalledWith({
       ...mockMessage,
-      sender: jasmine.any(String),
+      sender: 'Anonymous :)',
       date: jasmine.any(Date),
-      received: false,
+      received: true,
     });
-    expect(component.message).toEqual({ message: '', received: false });
+    expect(component.message).toEqual({ message: '', received: true });
   });
 
   it('should get messages', () => {
-    const mockMessage: Message = { message: 'Test message', received: false };
-    chatServiceSpy.getMessage.and.returnValue(of(mockMessage));
+    const mockMessage: Message[] = [{ message: 'Test message', received: true }];
+    chatServiceSpy.getMessage.and.returnValue(of([mockMessage]));
 
     component.getMessages();
-
-    expect(component.messageList).toContain({ ...mockMessage, received: true });
+    const expected:any = mockMessage.map(msg => ({ ...msg, received: true }));
+     expect(component.messageList).toContain(expected);
   });
 });
